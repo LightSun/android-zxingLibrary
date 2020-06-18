@@ -27,6 +27,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.google.zxing.ResultPoint;
@@ -91,12 +92,12 @@ public final class ViewfinderView extends View {
         if (innerMarginTop != -1) {
             CameraManager.FRAME_MARGINTOP = (int) innerMarginTop;
         }
+        DisplayMetrics dm = getResources().getDisplayMetrics();
 
         // 扫描框的宽度
-        CameraManager.FRAME_WIDTH = (int) ta.getDimension(R.styleable.ViewfinderView_inner_width, DisplayUtil.screenWidthPx / 2);
-
+        CameraManager.FRAME_WIDTH = (int) ta.getDimension(R.styleable.ViewfinderView_inner_width, dm.widthPixels / 2);
         // 扫描框的高度
-        CameraManager.FRAME_HEIGHT = (int) ta.getDimension(R.styleable.ViewfinderView_inner_height, DisplayUtil.screenWidthPx / 2);
+        CameraManager.FRAME_HEIGHT = (int) ta.getDimension(R.styleable.ViewfinderView_inner_height, dm.heightPixels / 2);
 
         // 扫描框边角颜色
         innercornercolor = ta.getColor(R.styleable.ViewfinderView_inner_corner_color, Color.parseColor("#45DDDD"));

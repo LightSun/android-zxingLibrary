@@ -40,9 +40,9 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
     private String characterSet;
     private InactivityTimer inactivityTimer;
     private MediaPlayer mediaPlayer;
-    private boolean playBeep;
+    protected boolean playBeep;
     private static final float BEEP_VOLUME = 0.10f;
-    private boolean vibrate;
+    protected boolean vibrate;
     private SurfaceView surfaceView;
     private SurfaceHolder surfaceHolder;
     private CodeUtils.AnalyzeCallback analyzeCallback;
@@ -95,13 +95,7 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
         decodeFormats = null;
         characterSet = null;
 
-        playBeep = true;
-        AudioManager audioService = (AudioManager) getActivity().getSystemService(getActivity().AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            playBeep = false;
-        }
-        initBeepSound();
-        vibrate = true;
+        setupAudioAndVibrate();
     }
 
     @Override
@@ -140,6 +134,16 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
                 analyzeCallback.onAnalyzeSuccess(barcode, result.getText());
             }
         }
+    }
+
+    protected void setupAudioAndVibrate() {
+        playBeep = true;
+        AudioManager audioService = (AudioManager) getActivity().getSystemService(getActivity().AUDIO_SERVICE);
+        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+            playBeep = false;
+        }
+        initBeepSound();
+        vibrate = true;
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
@@ -197,7 +201,6 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
 
     public void drawViewfinder() {
         viewfinderView.drawViewfinder();
-
     }
 
     private void initBeepSound() {
