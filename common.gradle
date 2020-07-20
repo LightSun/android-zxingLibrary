@@ -1,0 +1,13 @@
+
+dependencies {
+    def androidX_ver = '1.1.0'
+    def room_ver = '2.1.0-rc01'
+    def lifecycle_extensions = '2.2.0-rc02'
+
+    //implementation "androidx.room:room-runtime:$room_ver"
+    //annotationProcessor "androidx.room:room-compiler:$room_ver"
+
+    implementation "androidx.appcompat:appcompat:$androidX_ver"
+    implementation "androidx.recyclerview:recyclerview:$androidX_ver"
+    implementation "com.google.android.material:material:$androidX_ver"
+}

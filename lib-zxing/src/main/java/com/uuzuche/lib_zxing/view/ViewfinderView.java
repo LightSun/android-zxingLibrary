@@ -31,7 +31,6 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.google.zxing.ResultPoint;
-import com.uuzuche.lib_zxing.DisplayUtil;
 import com.uuzuche.lib_zxing.R;
 import com.uuzuche.lib_zxing.camera.CameraManager;
 
